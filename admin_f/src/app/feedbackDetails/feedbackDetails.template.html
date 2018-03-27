@@ -1,0 +1,117 @@
+<div *ngIf="show == true" class="row">
+    <div class="col-lg-6">
+        <section class="widget" widget>
+            <legend>Customer Details</legend>
+
+            <div class="widget-body">
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Name - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{feedback.customer.name}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Email - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{feedback.customer.email}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Mobile No. - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{feedback.customer.mobile_no}}</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend>Order Details</legend>
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Order Id. - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{feedback.order._id}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Products - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span *ngFor="let p of feedback.product" class="badge badge-primary"> {{p.name}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+<div *ngIf="show == true" class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget *ngFor="let f of feedback.feedBack_given">
+            <h5>Product Name - <b>{{f.product.name}}</b></h5>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Describe your Product experience
+ - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span> {{f.text}}</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Add any of these to express your experience - Audio/Video/Images
+ - </label>
+                <div style="
+    display: grid;
+" class="col-md-5 ">
+                    <a *ngFor="let p of f.fileUrls" href="#"> {{p}}</a>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Question / Answer
+ - </label>
+                <div class="col-md-5 ">
+                    <div *ngFor="let p of f.survey">
+
+                        <p style="
+    display: grid;
+" *ngIf="p.typeO.t == 'descriptive'">
+                            <span class="badge badge-primary">Question{{"- "+p.ques.q}} </span>
+                            <span> 
+                            <span class="badge badge-danger"> {{p.ques.ans}}</span>
+                            </span>
+                        </p>
+                        <p style="
+    display: grid;
+" *ngIf="p.typeO.t == 'singlechoice' || p.typeO.t == 'multiplechoice' ">
+                            <span class="badge badge-primary">Question{{"- "+p.ques.q}} </span>
+                            <span *ngFor="let o of p.options">
+                                     <span class="badge badge-danger" *ngIf="o.checked == true">{{o.o}}</span>
+                            </span>
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+
+</div>

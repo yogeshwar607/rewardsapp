@@ -1,0 +1,191 @@
+<div *ngIf="show == true" class="row">
+    <h1 class="page-title col-lg-6"> <small><small></small></small>
+    </h1>
+    <p class="col-lg-6">
+
+        <button style="float: right;   " (click)="updateOrderStatus()" class="btn btn-inverse  mb-xs float-r" role="button">
+            Update Order Status
+          </button>
+
+    </p>
+</div>
+<div *ngIf="show == true" class="row">
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend>Order Details</legend>
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Order Id. - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{order._id}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Status - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{order.status}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Products - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span *ngFor="let p of order.products" class="badge badge-primary"> {{p.name}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    <div class="col-lg-6">
+        <section class="widget" widget>
+            <legend>Customer Details</legend>
+
+            <div class="widget-body">
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Name - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{order.customer.name}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Email - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{order.customer.email}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Mobile No. - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{order.customer.mobile_no}}</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+
+</div>
+
+<div *ngIf="show == true" class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+            <legend>Address Details</legend>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Address Label. - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.lable}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Name - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.name}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Address - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.address}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Mobile No - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.mobile_no}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Address Type - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.address_type}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">City - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.city}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">State - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.state}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Country - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.country}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">Near By - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.near_by}}</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4  col-form-label text-md-right" for="max-length">PinCode - </label>
+                <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                    <span class="badge badge-primary"> {{order.address.pincode}}</span>
+                </div>
+            </div>
+
+
+
+        </section>
+    </div>
+
+</div>
+<app-dialog *ngIf="showDialog == true" [(visible)]="showDialog">
+
+    <div class="form-group row">
+        <label class="col-md-4  col-form-label text-md-right" for="max-length">Current Delivery Status - </label>
+        <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+            <span class="badge badge-primary"> {{order.status}}</span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-4  col-form-label text-md-right" for="max-length">Select Status to Update - </label>
+        <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+            <select name="status" [(ngModel)]="selectedStatus">
+                      <option value="Dispatched"> Dispatched</option>
+                      <option value="Delivered"> Delivered</option>
+                      
+                  </select>
+        </div>
+    </div>
+    <div style=" display: flex;
+    align-items: center;
+    justify-content: center;">
+
+        <button class="btn btn-primary mb-xs" role="button" (click)="submitUpdateOrderStatus()">Submit</button>
+
+    </div>
+
+</app-dialog>

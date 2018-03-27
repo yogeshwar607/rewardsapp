@@ -1,0 +1,368 @@
+<div class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend><b>Personal Information</b></legend>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Name - </label>
+                    <div class="col-md-5 ">
+                        <span *ngIf="editName == false"> {{name}}</span>
+                        <span *ngIf="editName == true"><input type="text" class="form-control" [(ngModel)]="name" name="name" >
+</span>
+                    </div>
+                    <button *ngIf="editName == false" (click)="clickEditName()" class="btn btn-primary mb-xs" role="button">
+            Edit
+          </button>
+                    <button *ngIf="editName == true" (click)="clickSave()" class="btn btn-primary mb-xs" role="button">
+            Save
+          </button>
+                    <button *ngIf="editName == true" (click)="clickEditName()" class="btn btn-primary mb-xs" role="button">
+            Cancel
+          </button>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Mobile No. - </label>
+                    <div class="col-md-5 ">
+                        <span *ngIf="editMobile == false"> {{mobile_no}}</span>
+                        <span *ngIf="editMobile == true"><input type="text" class="form-control" [(ngModel)]="mobile_no" name="mobile_no" ></span>
+                    </div>
+                    <button *ngIf="editMobile == false" (click)="clickEditMobile()" class="btn btn-primary mb-xs" role="button">
+            Edit
+          </button>
+                    <button *ngIf="editMobile == true" (click)="clickSave()" class="btn btn-primary mb-xs" role="button">
+            Save
+          </button>
+                    <button *ngIf="editMobile == true" (click)="clickEditMobile()" class="btn btn-primary mb-xs" role="button">
+            Cancel
+          </button>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Email - </label>
+                    <div class="col-md-5 ">
+                        <span *ngIf="editEmail == false"> {{email}}</span>
+                        <span *ngIf="editEmail == true"><input type="text" class="form-control" [(ngModel)]="email" name="email" ></span>
+                    </div>
+                    <button *ngIf="editEmail == false" (click)="clickEditEmail()" class="btn btn-primary mb-xs" role="button">
+            Edit
+          </button>
+                    <button *ngIf="editEmail == true" (click)="clickSave()" class="btn btn-primary mb-xs" role="button">
+            Save
+          </button>
+                    <button *ngIf="editEmail == true" (click)="clickEditEmail()" class="btn btn-primary mb-xs" role="button">
+            Cancel
+          </button>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="widget" widget>
+            <app-dialog [(visible)]="showDialog">
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Address Label </label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="label" name="lable">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Name </label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="nameAd" name="nameAd">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Mobile No. </label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="mobile_noAd" name="mobile_noAd">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Address  </label>
+                    <div class="col-md-5 ">
+                        <textarea type="text" class="form-control" [(ngModel)]="address" name="address"></textarea>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Near By </label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="near_by" name="near_by">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Country </label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="country" name="country">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">State</label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="state" name="state">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">City </label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="city" name="city">
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">PinCode </label>
+                    <div class="col-md-5 ">
+                        <input type="text" class="form-control" [(ngModel)]="pincode" name="pincode">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    Address Type
+                    <div class="form-group row">
+                        <!--<label for="normal-field" class="col-md-4  col-form-label text-md-right">Gender</label>-->
+                        <div style="padding-left: 20px;
+    padding-top: 10px;">
+                            <input type="radio" name="radio1" [(ngModel)]="addressType" value="Home" checked>
+                            <label for="radio1">
+                        Home
+                      </label>
+                            <input type="radio" name="radio1" [(ngModel)]="addressType" value="Work" checked>
+                            <label for="radio1">
+                        Work
+                      </label>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div style="    text-align: center;">
+
+                    <button class="btn btn-primary" type="button" (click)="submitNewAddress()">
+              Submit
+            </button>
+                </div>
+
+            </app-dialog>
+
+            <div class="widget-body">
+                <legend><b>Manage Address</b> <button (click)="addNewAddress()" class="btn btn-primary mb-xs" role="button">
+            Add New
+          </button></legend>
+
+
+                <div *ngFor="let i of addressess ; let a = index" class="form-group row">
+                    <!--<span class="help-block">erere</span>-->
+                    <label class="col-md-2  col-form-label text-md-right" for="max-length">{{i.lable}}</label>
+                    <div class="col-md-7 ">
+                        <b>{{i.name}} - </b> {{i.mobile_no}}
+                        <p> {{address}}</p>
+                        <p>{{i.near_by}}, &nbsp; {{i.city}}&nbsp;,{{i.state}} - {{i.pincode}},&nbsp;{{i.country}}</p>
+
+                    </div>
+                    <div class="col-md-3 ">
+
+                        <button (click)="deleteAddress(i,a)" class="btn btn-primary mb-xs" role="button">
+            Delete
+          </button>
+                    </div>
+                    <div>
+
+                    </div>
+
+                </div>
+                <p *ngIf="addressess.length == 0"><i><b>No address Found</b></i></p>
+
+            </div>
+
+        </section>
+
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend><b>My Orders</b></legend>
+
+
+                <div *ngFor="let i of orderList" class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right" for="max-length">{{i._id}}</label>
+                    <div class="col-md-8 ">
+                        <p> <b>Date of Order:</b> <span class="badge badge-primary"><i>{{i.date_of_order | date:'medium'}}</i></span></p>
+                        <p><b> Status: </b><span class="badge badge-primary"><i>{{i.status}}</i></span></p>
+                        <p><b> Products: </b> <span class="badge badge-default" *ngFor="let p of i.products">{{p.name}}</span></p>
+
+                        <!--<p> Delivery Time: <i>6 Days</i></p>-->
+
+
+
+                    </div>
+
+                    <div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend><b>My FeedBacks</b></legend>
+                <!--<div class="mb-sm">
+                    <div class="btn-group">
+                        <label class="btn btn-gray" btnRadio="given" name='given' [(ngModel)]="radioModel">
+             Given
+            </label>
+
+                        <label class="btn btn-gray" btnRadio="pend" name='pend' [(ngModel)]="radioModel">
+             Pending
+            </label>
+                    </div>
+                </div>-->
+
+
+                <!--<div class="form-group row">
+                    <label class="col-md-2  col-form-label text-md-right" for="max-length"> Product Name</label>
+                    <div class="col-md-7 ">
+                        <p>Status : <i>Pending</i></p>
+
+
+
+
+                    </div>
+                    <div class="col-md-3 ">
+                        <button class="btn btn-primary mb-xs" role="button">
+            Give FeedBack
+          </button>
+
+                    </div>
+
+                    <div>
+
+                    </div>
+
+                </div>-->
+
+                <div *ngFor="let i of feedbackList" class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right" for="max-length"><span class="badge badge-default" *ngFor="let p of i.product">{{p.name}}</span></label>
+                    <div class="col-md-5 ">
+                        <p> <b>Order Id:</b> <span class="badge badge-primary"><i>{{i.order._id}}</i></span></p>
+                        <p><b> Delivery Status: </b><span class="badge badge-primary"><i>{{i.order.status}}</i></span></p>
+                        <p><b> FeedBack Status: </b><span class="badge badge-primary"><i>{{i.status}}</i></span></p>
+
+                        <!--<p> Delivery Time: <i>6 Days</i></p>-->
+
+
+
+                    </div>
+
+
+                    <div class="col-md-4" style="    display: grid;
+">
+                        <button style="padding: 2px 5px;" *ngFor="let a of i.product" [disabled]="!i.isDelivered" (click)="showFeedBackDialog(a,i)" class="btn btn-primary mb-xs" role="button">
+            Give FeedBack for {{" "+a.name}}
+          </button>
+
+                    </div>
+
+                </div>
+            </div>
+            <app-dialog *ngIf="showDialogFeedBack" [(visible)]="showDialogFeedBack">
+                <h3>{{feedBackProduct.name}}</h3>
+                <div class="mb-sm">
+                    <div class="btn-group">
+                        <label class="btn btn-gray" btnRadio="descriptive" name='descriptive' [(ngModel)]="radioModel">
+             Descriptive
+            </label>
+
+                        <label class="btn btn-gray" btnRadio="audio" name='audio' [(ngModel)]="radioModel">
+             Audio/video/Image
+            </label>
+                        <label class="btn btn-gray" btnRadio="ques" name='ques' [(ngModel)]="radioModel">
+             Question/Answer
+            </label>
+                    </div>
+                </div>
+                <div *ngIf="radioModel == 'descriptive'" class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Describe your Product experience </label>
+                    <div class="col-md-5 ">
+                        <textarea type="text" class="form-control" [(ngModel)]="text" name="text"></textarea>
+                    </div>
+
+                </div>
+
+                <div *ngIf="radioModel == 'audio'" class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Add any of these to express your experience - Audio/Video/Images</label>
+                    <div class="col-md-5 ">
+                        <input type="file" multiple (change)="onChange($event)" />
+                        <ul>
+                            <li *ngFor="let x of showFileNames">{{x.name}}</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div *ngIf="radioModel == 'ques'" class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Questions</label>
+                    <div class="col-md-5 ">
+                        <div *ngFor="let j of feedBackProduct.survey; let am =index;">
+
+                            <span class="badge badge-primary">{{j.ques.q}}</span>
+                            <textarea *ngIf="j.typeO.t == 'descriptive'" type="text" class="form-control" [(ngModel)]="j.ques.ans" name="{{'qq'+am}}"></textarea>
+                            <div *ngIf="j.typeO.t == 'multiplechoice'">
+                                <div *ngFor="let ii of j.options">
+                                    <input name="{{ii.o}}" type="checkbox" [(ngModel)]="ii.checked" [value]="ii.o">
+                                    <label class="badge badge-danger">
+                    {{ii.o}}
+                  </label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="j.typeO.t == 'singlechoice'">
+                                <div *ngFor="let ii of j.options">
+
+                                    <input type="radio" name="{{j.ques._id}}" [(ngModel)]="ii.checked" [value]="ii.o" checked>
+
+                                    <label class="badge badge-success">
+                    {{ii.o}}
+                  </label>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="form-group row" style="    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+                    <div>
+                        <button class="btn btn-primary" type="button" (click)="submitFeedBack()">
+              Submit
+            </button>
+
+                    </div>
+                </div>
+
+            </app-dialog>
+
+        </section>
+
+
+    </div>
+</div>

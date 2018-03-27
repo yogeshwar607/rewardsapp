@@ -1,0 +1,64 @@
+<div class="row">
+    <h1 class="page-title">Feedbacks <small><small></small></small>
+    </h1>
+</div>
+
+<!--<div class="row">-->
+<section class="widget" widget>
+
+    <div class="widget-body">
+        <div class="mt">
+            <div class="width-200 float-right">
+                <div class="input-group input-group-sm input-group-transparent input-group-rounded">
+                    <span class="input-group-addon">
+            <!--<i class="fa fa-search"></i>-->
+          </span>
+                    <!--<input class="form-control form-control-sm" id="table-search-input" [(ngModel)]="searchText" type="text" placeholder="Search FeedBacks">-->
+                </div>
+            </div>
+            <table class="table table-striped table-hover" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+                <thead>
+                    <tr>
+
+
+
+                        <th class="no-sort hidden-sm-down">
+                            <mfDefaultSorter>Product Name</mfDefaultSorter>
+                        </th>
+                        <th class="no-sort hidden-sm-down">
+                            <mfDefaultSorter>Given BY</mfDefaultSorter>
+                        </th>
+                        <th class="no-sort hidden-sm-down">
+                            <mfDefaultSorter>Order Id</mfDefaultSorter>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr [routerLink]=" ['/app/feedbackDetails-page/'+i._id]" *ngFor="let i of mf.data">
+
+                        <td class="hidden-sm-down"><span class="badge badge-primary" *ngFor="let p of i.product ">{{p.name}}</span></td>
+                        <td class="hidden-sm-down">{{i.customer.name}}</td>
+                        <td class="hidden-sm-down">{{i.order._id}}</td>
+                        <!--<td><span class="fw-semi-bold">{{person.type}}</span></td>-->
+
+
+                    </tr>
+                    <tr *ngIf="mf.data.length === 0">
+                        <td colspan="100">
+                            No matches
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="12">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[10, 25, 50, 100]"></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
+<!--</div>-->

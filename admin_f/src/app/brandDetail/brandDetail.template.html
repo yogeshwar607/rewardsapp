@@ -1,0 +1,81 @@
+<div class="row">
+    <h1 class="page-title col-lg-6">{{name}} <small><small></small></small>
+    </h1>
+    <p class="col-lg-6">
+        <button [routerLink]=" ['/app/products-page/'+brandId] " class="btn btn-inverse width-100 mb-xs float-r" role="button" style="float: right;    margin: 5px;">
+           Products
+          </button>
+        <button style="float: right;    margin: 5px;" [routerLink]=" ['/app/addBrand-page'] " class="btn btn-inverse width-100 mb-xs float-r" role="button">
+           Edit
+          </button>
+        <button *ngIf="is_active != true" style="float: right;    margin: 5px;" (click)="activate()" class="btn btn-inverse width-100 mb-xs float-r" role="button">
+            Enable
+          </button>
+        <button *ngIf="is_active == true" style="float: right;    margin: 5px;" (click)="activate()" class="btn btn-inverse width-100 mb-xs float-r" role="button">
+            Disable
+          </button>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <img *ngIf="showVideo == false" class="back" src="{{activeImg}}" height="300px" width="500px">
+                <iframe *ngIf="showVideo == true" width="500" height="500" [src]="sanitizer.bypassSecurityTrustResourceUrl(videoUrl)" frameborder="0" allowfullscreen></iframe>
+
+            </div>
+        </section>
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <img (click)="selectActiveImg(i)" *ngFor="let i of images" src="{{i}}" class="back" style="     margin: 8px;" height="80px" width="80px">
+
+            </div>
+            <!--<div class="video-thumbnail">
+                <img height="80px" width="80px" src="http://img.youtube.com/vi/A4a0xZMMlqE/0.jpg">
+
+            </div>-->
+            <div (click)="showVid(i)" *ngFor="let i of videoLinkList" class="video-thumbnail">
+                <img height="80px" width="80px" src="http://img.youtube.com/vi/{{i}}/0.jpg">
+
+            </div>
+            <!--<iframe width="80" height="80" src="https://www.youtube.com/embed/3C5JH2u5r78" frameborder="0" allowfullscreen></iframe>-->
+            <!--<iframe width="80" height="80" src="https://www.youtube.com/embed/3C5JH2u5r78" frameborder="0" allowfullscreen></iframe>-->
+
+        </section>
+
+    </div>
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend>Description</legend>
+
+                <div [innerHtml]="description"></div>
+
+                <br>
+                <legend>Headquaters</legend>
+                <p>{{headquaters}}</p>
+                <br>
+                <legend>Facebook Page Link</legend>
+                <p>{{fbLink}}</p>
+
+                <br>
+                <legend>Twitter Link</legend>
+                <p>{{twitterLink}}</p>
+
+                <br>
+                <legend>LinkedIn Link</legend>
+                <p>{{linkedInLink}}</p>
+
+                <br>
+
+
+            </div>
+        </section>
+
+
+    </div>
+</div>

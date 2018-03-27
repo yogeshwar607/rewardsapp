@@ -1,0 +1,61 @@
+<div class="row">
+    <h1 class="page-title col-lg-6">Create User <small><small></small></small>
+    </h1>
+
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <form class="form-horizontal" role="form">
+                    <fieldset>
+                        <div class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Name</label>
+                            <div class="col-md-7 ">
+                                <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Email</label>
+                            <div class="col-md-7 ">
+                                <input type="text" [(ngModel)]="email" name="email" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Mobile No</label>
+                            <div class="col-md-7 ">
+                                <input type="text" [(ngModel)]="mobile_no" name="mobile_no" class="form-control" placeholder="Mobile No">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Password</label>
+                            <div class="col-md-7 ">
+                                <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+
+
+
+
+
+                    </fieldset>
+
+                </form>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+            <div class="widget-body float-r">
+
+                <button class="btn btn-primary mb-xs" role="button" (click)="submit()">Submit</button>
+
+            </div>
+        </section>
+    </div>
+</div>

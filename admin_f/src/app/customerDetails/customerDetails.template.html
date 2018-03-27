@@ -1,0 +1,125 @@
+<div *ngIf="show == true" class="row">
+    <h1 class="page-title col-lg-6"> <small><small></small></small>
+    </h1>
+    <p class="col-lg-6">
+
+        <button *ngIf="customer.is_active != true" style="float: right;    margin: 5px;" (click)="activateUser()" class="btn btn-inverse width-100 mb-xs float-r" role="button">
+            Enable
+          </button>
+        <button *ngIf="customer.is_active == true" style="float: right;    margin: 5px;" (click)="activateUser()" class="btn btn-inverse width-100 mb-xs float-r" role="button">
+            Disable
+          </button>
+    </p>
+</div>
+<div *ngIf="show == true" class="row">
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Name - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.name}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Email - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.email}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Mobile No. - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.mobile_no}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Gender - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.gender}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Age - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.age}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">City - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.city}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">State - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.state}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Country - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.country}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4  col-form-label text-md-right" for="max-length">Active Status - </label>
+                    <div class="col-md-5 " style="display: flex;
+    align-items: center;">
+                        <span class="badge badge-primary"> {{customer.is_active}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend>Interests</legend>
+                <div class="form-group row">
+                    <!--<label class="col-md-4  col-form-label text-md-right" for="max-length"> </label>-->
+                    <div class="col-md-5 " *ngFor="let i of customer.interests" style="display: flex;
+    align-items: center;">
+                        <span style="    margin: 10px;" class="badge badge-primary"> {{i.name}}</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend>Addressess</legend>
+                <div *ngFor="let i of customer.addressess ; let a = index" class="form-group row">
+                    <!--<span class="help-block">erere</span>-->
+                    <label class="col-md-2  col-form-label text-md-right" for="max-length">{{i.lable}}</label>
+                    <div class="col-md-7 ">
+                        <b>{{i.name}} - </b> {{i.mobile_no}}
+                        <p> {{address}}</p>
+                        <p>{{i.near_by}}, &nbsp; {{i.city}}&nbsp;,{{i.state}} - {{i.pincode}},&nbsp;{{i.country}}</p>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </section>
+    </div>
+
+</div>

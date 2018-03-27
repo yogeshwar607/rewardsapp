@@ -1,0 +1,109 @@
+<div class="row">
+    <h1 class="page-title col-lg-6">{{name}} <small><small>{{brandName}}</small></small>
+    </h1>
+    <p class="col-lg-6">
+
+        <button [routerLink]=" ['/app/addProduct-page/'+ productId] " class="btn btn-inverse width-100 mb-xs float-r" style="float: right;    margin: 5px;" role="button">
+           Edit
+          </button>
+        <button *ngIf="is_active != true" style="float: right;    margin: 5px;" (click)="activate()" class="btn btn-inverse width-100 mb-xs float-r" role="button">
+            Enable
+          </button>
+        <button *ngIf="is_active == true" style="float: right;    margin: 5px;" (click)="activate()" class="btn btn-inverse width-100 mb-xs float-r" role="button">
+            Disable
+          </button>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <img *ngIf="showVideo == false" class="back" src="{{activeImg}}" height="300px" width="500px">
+                <iframe *ngIf="showVideo == true" width="500" height="500" [src]="sanitizer.bypassSecurityTrustResourceUrl(videoUrl)" frameborder="0" allowfullscreen></iframe>
+
+            </div>
+        </section>
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <img (click)="selectActiveImg(i)" *ngFor="let i of images" src="{{i}}" class="back" style="    margin: 8px;" height="80px" width="80px">
+
+            </div>
+            <div (click)="showVid(i)" *ngFor="let i of videoLinkList" class="video-thumbnail">
+                <img height="80px" width="80px" src="http://img.youtube.com/vi/{{i}}/0.jpg">
+
+            </div>
+            <!--<iframe width="80" height="80" src="https://www.youtube.com/embed/3C5JH2u5r78" frameborder="0" allowfullscreen></iframe>-->
+            <!--<iframe width="80" height="80" src="https://www.youtube.com/embed/3C5JH2u5r78" frameborder="0" allowfullscreen></iframe>-->
+
+        </section>
+
+    </div>
+    <div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <legend>Description</legend>
+
+                <div [innerHTML]="description"></div>
+
+                <br>
+                <legend>No. of Available Items</legend>
+                <p>{{nAvailable}}</p>
+                <legend>Category</legend>
+                <p>{{category}}</p>
+
+                <legend>Facebook Page Link</legend>
+                <p>{{fbLink}}</p>
+                <legend>Survey Questions</legend>
+                <div class="form-group row">
+                    <!--<label class="col-md-4  col-form-label text-md-right" for="max-length">Survey Questions-->
+                    <!--- </label>-->
+                    <div class="col-md-5 ">
+                        <div *ngFor="let p of survey">
+
+                            <p style="
+    display: grid;
+" *ngIf="p.typeO.t == 'descriptive'">
+                                <span class="badge badge-primary">Question{{" - "+p.ques.q}} </span>
+                                <span> 
+                            <span class="badge badge-danger">Question Type {{" - "+p.typeO.t}}</span>
+                                </span>
+                            </p>
+                            <p style="
+    display: grid;
+" *ngIf="p.typeO.t == 'singlechoice' || p.typeO.t == 'multiplechoice' ">
+                                <span class="badge badge-primary">Question{{"- "+p.ques.q}} </span>
+                                <span class="badge badge-danger">Question Type {{" - "+p.typeO.t}}</span>
+
+                                <!--<span >-->
+                                <span *ngFor="let o of p.options" class="badge badge-danger">{{o.o}}</span>
+                                <!--</span>-->
+
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+                <legend>Target Audience</legend>
+                <p>Age : {{this.minAge}} - {{this.maxAge}}</p>
+                <p>Gender : {{this.gender}}</p>
+                <p>Location : {{this.location}}</p>
+                <br>
+                <legend>Rules</legend>
+                <p>Items Available per day per user : {{perdayperuser}}</p>
+                <p>Items Available per week per user : {{perweekperuser}}</p>
+                <p>Items Available per month per user :{{permonthperuser}}</p>
+
+
+            </div>
+        </section>
+
+
+    </div>
+</div>

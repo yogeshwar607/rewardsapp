@@ -1,0 +1,167 @@
+<div class="row">
+    <h1 class="page-title col-lg-6">Add Brand <small><small></small></small>
+    </h1>
+
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <form class="form-horizontal" role="form">
+                    <fieldset>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Brand Name</label>
+                            <div class="col-md-7 ">
+                                <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Brand Name">
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[1].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Logo</label>
+                            <div class="col-md-7 ">
+                                <input (change)="onChangeLogo($event)" type="file">
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[1].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Images(MAX 5)</label>
+                            <div class="col-md-7 ">
+                                <input type="file" multiple (change)="onChange($event)" />
+                                <!--<input #showFileNames />-->
+                                <div class="col-md-8">
+                                    <!--<li *ngFor="let i of tagList"></li>-->
+                                    <span style="    margin: 10px;" *ngFor="let i of showFileNames;let a =index;" class="badge badge-primary">{{i}} 
+                                   <i (click)="deleteFile(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[1].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Videos Id(MAX 2)</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" class="form-control" [(ngModel)]="videoLink" name="videoLink" placeholder="Youtube Video Id">
+                                <button (click)="addVideo()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[1].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <!--<ul class="col-md-8">
+                                <li *ngFor="let i of videoLinkList">{{i}}</li>
+
+
+                            </ul>-->
+                            <div class="col-md-8">
+                                <!--<li *ngFor="let i of tagList"></li>-->
+                                <span style="    margin: 10px;" *ngFor="let i of videoLinkList;let a =index;" class="badge badge-primary">{{i}} 
+                                   <i (click)="deleteVideo(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+
+                            </div>
+
+
+                        </div>
+
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Category</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <select name="category" [(ngModel)]="category">
+  <optgroup *ngFor="let i of inti" label="{{i.name}}">
+    <option  *ngFor="let ii of i.sub_category" value="{{ii.name}}">{{ii.name}}</option>
+    <!--<option value="saab">Saab</option>-->
+  </optgroup>
+                               </select>
+                                <button (click)="addCategory()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <!--<ul class="col-md-8">
+                                <li *ngFor="let i of categoryList">{{i}}</li>
+
+
+                            </ul>-->
+
+                            <div class="col-md-8">
+                                <!--<li *ngFor="let i of tagList"></li>-->
+                                <span style="    margin: 10px;" *ngFor="let i of categoryList;let a =index;" class="badge badge-primary">{{i}} 
+                                   <i (click)="deleteCat(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+
+                            </div>
+
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Headquaters</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" name="headquaters" [(ngModel)]="headquaters" class="form-control" placeholder="Headquaters Name">
+
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Facebook Page Link</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" name="fbLink" [(ngModel)]="fbLink" class="form-control" placeholder="">
+
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Twitter Page Link</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" name="twitterLink" [(ngModel)]="twitterLink" class="form-control" placeholder="">
+
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">LinkedIn Link</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" name="linkedInLink" [(ngModel)]="linkedInLink" class="form-control" placeholder="">
+
+
+                            </div>
+                        </div>
+
+                        <legend *ngIf="wizard[2].active == true">Description</legend>
+
+                        <div *ngIf="wizard[2].active == true" class="widget-body">
+                            <div [froalaEditor] [(froalaModel)]="editorContent">Hello!</div>
+
+
+                        </div>
+
+                    </fieldset>
+
+                </form>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+            <div *ngIf="wizard[2].active != true" class="widget-body float-r">
+                <button *ngIf="wizard[0].active != true" class="btn btn-primary mb-xs" role="button" (click)="backWizard()">Back</button>
+
+                <button class="btn btn-primary mb-xs" role="button" (click)="nextWizard()">Next</button>
+
+            </div>
+            <div *ngIf="wizard[2].active == true" class="widget-body float-r">
+
+                <button class="btn btn-primary mb-xs" role="button" (click)="upload()">Submit</button>
+
+            </div>
+        </section>
+    </div>
+</div>

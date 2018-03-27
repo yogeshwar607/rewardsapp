@@ -1,0 +1,376 @@
+<div class="row">
+    <h1 class="page-title col-lg-6">Add Product <small><small>- Brand Name</small></small>
+    </h1>
+
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <form class="form-horizontal" role="form">
+                    <fieldset>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Product Name</label>
+                            <div class="col-md-7 ">
+                                <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Product Name">
+                            </div>
+                        </div>
+                        <!--<div class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Logo</label>
+                            <div class="col-md-7 ">
+                                <input type="file" id="myFile">
+                            </div>
+                        </div>-->
+                        <div *ngIf="wizard[1].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Images(MAX 5)</label>
+                            <div class="col-md-7 ">
+                                <input type="file" multiple (change)="onChange($event)" />
+                                <!--<input #showFileNames />-->
+                                <!--<ul>
+                                    <li *ngFor="let x of showFileNames">{{x.name}}</li>
+                                </ul>-->
+                                <div class="col-md-8">
+                                    <!--<li *ngFor="let i of categoryList">{{i}}</li>-->
+                                    <span style="    margin: 10px;" *ngFor="let i of showFileNames;let a =index;" class="badge badge-primary">{{i.name}} 
+                                   <i (click)="deleteFile(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[1].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"> Youtube Videos ID(MAX 2)</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" [(ngModel)]="videoLink" name="videoLink" class="form-control" placeholder="Youtube Video ID">
+                                <button (click)="addVideo()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[1].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <ul class="col-md-8">
+                                <!--<li *ngFor="let i of videoLinkList">{{i}}</li>-->
+                                <div class="col-md-8">
+                                    <!--<li *ngFor="let i of categoryList">{{i}}</li>-->
+                                    <span style="    margin: 10px;" *ngFor="let i of videoLinkList;let a =index;" class="badge badge-primary">{{i}} 
+                                   <i (click)="deleteVideo(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+
+                            </ul>
+
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">No.of Available Items </label>
+                            <div class="col-md-7 ">
+                                <input type="text" [(ngModel)]="nAvailable" name="nAvailable" class="form-control" placeholder="00">
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngIf="wizard[3].active == true" class="form-group row">
+                            <legend>Target Audience</legend>
+
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Age</label>
+                            <div class="col-md-7 " style="    display: flex;
+    align-items: center;
+    justify-content: space-around;">
+                                <input type="text" [(ngModel)]="minAge" name="minAge" style="width:60px" class="form-control" placeholder="00"> to
+                                <input type="text" [(ngModel)]="maxAge" name="maxAge" style="width:60px" class="form-control" placeholder="00">
+
+                            </div>
+
+                        </div>
+                        <div *ngIf="wizard[3].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Gender</label>
+                            <div>
+                                <input type="radio" name="radio1" [(ngModel)]="model.sex" value="male" checked>
+                                <label for="radio1">
+                        Male
+                      </label>
+                                <input type="radio" name="radio1" [(ngModel)]="model.sex" value="female" checked>
+                                <label for="radio1">
+                        FeMale
+                      </label>
+                                <input type="radio" name="radio1" [(ngModel)]="model.sex" value="both" checked>
+                                <label for="radio1">
+                        Both
+                      </label>
+                            </div>
+
+
+                        </div>
+
+                        <div *ngIf="wizard[3].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Location</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" name="location" [(ngModel)]="location" class="form-control" placeholder="">
+                                <button (click)="addLocation()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[3].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <!--<ul class="col-md-8">-->
+                            <!--<li *ngFor="let i of locationList">{{i}}</li>-->
+                            <!--<ul class="col-md-8">-->
+                            <!--<li *ngFor="let i of videoLinkList">{{i}}</li>-->
+                            <div class="col-md-8">
+                                <!--<li *ngFor="let i of categoryList">{{i}}</li>-->
+                                <span style="    margin: 10px;" *ngFor="let i of locationList;let a =index;" class="badge badge-primary">{{i}} 
+                                   <i (click)="deleteLocation(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                            </div>
+
+                            <!--</ul>-->
+
+                            <!--</ul>-->
+
+                        </div>
+
+                        <div *ngIf="wizard[2].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Survey Type</label>
+                            <div class="col-md-8">
+                                <input type="radio" name="radio12" [(ngModel)]="surveyType" (ngModelChange)="changeSurveyType()" value="descriptive" checked>
+                                <label for="radio1">
+                        Descriptive
+                      </label>
+                                <input type="radio" name="radio13" [(ngModel)]="surveyType" (ngModelChange)="changeSurveyType()" value="singlechoice" checked>
+                                <label for="radio1">
+                        Single Choice
+                      </label>
+                                <input type="radio" name="radio14" [(ngModel)]="surveyType" (ngModelChange)="changeSurveyType()" value="multiplechoice" checked>
+                                <label for="radio1">
+                        Multiple Choice
+                      </label>
+                            </div>
+
+                        </div>
+                        <div *ngIf="wizard[2].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <div class="col-md-6" style="    display: flex;">
+                                <input type="text" name="survey" [(ngModel)]="survey" class="form-control" placeholder="Survey Ques">
+                                <!--<button (click)="addSurvey()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>-->
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div *ngIf="wizard[2].active == true && noOpt == false" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <div class="col-md-6" style="    display: flex;">
+                                <input type="text" name="option" [(ngModel)]="option" class="form-control" placeholder="Option">
+                                <button (click)="addOption()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div *ngIf="wizard[2].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <!--<ul class="col-md-8">-->
+                            <!--<li *ngFor="let i of optionList">{{i}}</li>-->
+                            <div class="col-md-8">
+                                <!--<li *ngFor="let i of categoryList">{{i}}</li>-->
+                                <span style="    margin: 10px;" *ngFor="let i of optionList;let a =index;" class="badge badge-primary">{{i.o}} 
+                                   <i (click)="deleteOption(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                            </div>
+
+                            <!--</ul>-->
+
+                        </div>
+                        <div *ngIf="wizard[2].active == true" class="form-group row float-r">
+                            <button class="btn btn-primary mb-xs" role="button" (click)="addSurvey()">Add</button>
+
+                        </div>
+
+                        <div *ngIf="wizard[2].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <ul class="col-md-8">
+                                <li *ngFor="let i of surveyList">
+                                    <span><b>Question:</b> {{i.ques.q}}</span>
+                                    <span><b>Options:</b> <i *ngFor="let m of i.options">{{m.o+" ,"}}</i></span>
+                                    <span><b>Type:</b>  {{i.typeO.t}}</span>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Category</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <select name="category" [(ngModel)]="category">
+  <optgroup *ngFor="let i of init" label="{{i.name}}">
+    <option  *ngFor="let ii of i.sub_category" value="{{ii.name}}">{{ii.name}}</option>
+    <!--<option value="saab">Saab</option>-->
+  </optgroup>
+                               </select>
+                                <button (click)="addCategory()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <div class="col-md-8">
+                                <!--<li *ngFor="let i of categoryList">{{i}}</li>-->
+                                <span style="    margin: 10px;" *ngFor="let i of categoryList;let a =index;" class="badge badge-primary">{{i}} 
+                                   <i (click)="deleteCat(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Search Tags</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" name="tag" [(ngModel)]="tag" class="form-control" placeholder="Tag">
+                                <span class="help-block" style="    position: absolute;
+    top: 33px;
+    color: black;"><i>Product Name and Categories added will be added in search tag by default</i></span>
+                                <button (click)="addTag()" class="btn btn-primary mb-xs" role="button">
+            Add
+          </button>
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"></label>
+
+                            <div class="col-md-8">
+                                <!--<li *ngFor="let i of tagList"></li>-->
+                                <span style="    margin: 10px;" *ngFor="let i of tagList;let a =index;" class="badge badge-primary">{{i}} 
+                                   <i (click)="deleteTag(i,a)" class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="wizard[0].active == true" class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Facebook Page Link</label>
+                            <div class="col-md-8" style="    display: flex;">
+                                <input type="text" name="fbLink" [(ngModel)]="fbLink" id="normal-field" class="form-control" placeholder="">
+
+
+                            </div>
+                        </div>
+                        <div *ngIf="wizard[3].active == true" class="form-group row">
+                            <legend>Rules</legend>
+
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Items Available per day per user</label>
+                            <div class="col-md-7 ">
+                                <input type="text" name="perdayperuser" [(ngModel)]="perdayperuser" class="form-control" placeholder="00">
+
+                            </div>
+
+                        </div>
+                        <div *ngIf="wizard[3].active == true" class="form-group row">
+
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Items Available per week per user</label>
+                            <div class="col-md-7 ">
+                                <input type="text" name="perweekperuser" [(ngModel)]="perweekperuser" class="form-control" placeholder="00">
+
+                            </div>
+
+                        </div>
+                        <div *ngIf="wizard[3].active == true" class="form-group row">
+
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right">Items Available per month per user</label>
+                            <div class="col-md-7 ">
+                                <input type="text" name="permonthperuser" [(ngModel)]="permonthperuser" class="form-control" placeholder="00">
+
+                            </div>
+
+                        </div>
+                        <!--<section *ngIf="wizard[4].active == true" class="widget" widget>-->
+                        <legend *ngIf="wizard[4].active == true">Description</legend>
+
+                        <div *ngIf="wizard[4].active == true" class="widget-body">
+                            <div [froalaEditor] [(froalaModel)]="editorContent">Hello, Froala!</div>
+
+
+                        </div>
+                        <!--</section>-->
+
+
+
+
+                    </fieldset>
+
+                </form>
+            </div>
+        </section>
+    </div>
+    <!--<div class="col-lg-6">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <form class="form-horizontal" role="form">
+                    <fieldset>
+                        
+                    </fieldset>
+
+                </form>
+            </div>
+        </section>
+    </div>-->
+</div>
+<!--<div class="row">
+    <div class="col-lg-12">
+        <section *ngIf="wizard[4].active == true" class="widget" widget>
+            <legend>Description</legend>
+
+            <div class="widget-body">
+                <div [froalaEditor] [(froalaModel)]="editorContent">Hello, Froala!</div>
+
+
+            </div>
+        </section>
+    </div>
+</div>-->
+<div *ngIf="wizard[4].active != true" class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+            <div class="widget-body float-r">
+                <button *ngIf="wizard[0].active != true" class="btn btn-primary mb-xs" role="button" (click)="backWizard()">Back</button>
+
+                <button class="btn btn-primary mb-xs" role="button" (click)="nextWizard()">Next</button>
+
+            </div>
+        </section>
+    </div>
+</div>
+<div *ngIf="wizard[4].active == true" class="row">
+    <div class="col-lg-12">
+        <section class="widget" widget>
+            <div class="widget-body float-r">
+
+                <button class="btn btn-primary mb-xs" role="button" (click)="upload()">Submit</button>
+
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-lg-3" *ngFor="let i of data1" [routerLink]=" ['/app/brandDetail-page/'+i._id] ">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                {{i.name}}
+            </div>
+        </section>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col-lg-3" *ngFor="let i of data2" [routerLink]=" ['/app/brandDetail-page/'+i._id] ">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                {{i.name}}
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3" [routerLink]=" ['/app/allBrand-page'] ">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                View All
+            </div>
+        </section>
+    </div>
+
+</div>
+<div class="row">
+
+    <div *ngFor="let i of productList1" class="col-lg-3">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <img class="back" [routerLink]=" ['/app/productDetail-page/'+i._id] " [src]="i.images[0]">
+                <br>
+                <br>
+
+                <p style="text-align:center"><b>{{i.name}}</b></p>
+                <button (click)="addToCart(i)" class="btn btn-success mb-xs" style="width: 100%;" role="button">
+            Add to Cart
+          </button>
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+</div>
+
+<div class="row">
+    <div *ngFor="let i of productList2" class="col-lg-3">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+                <img [routerLink]=" ['/app/productDetail-page/'+i._id] " class="back" [src]="i.images[0]">
+                <br>
+                <br>
+
+                <p style="text-align:center"><b>{{i.name}}</b></p>
+                <button (click)="addToCart(i)" class="btn btn-success mb-xs" style="width: 100%;" role="button">
+            Add to Cart
+          </button>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3">
+        <section class="widget" widget>
+
+            <div [routerLink]=" ['/app/allProducts-page'] " class="widget-body">
+
+
+                <p style="text-align:center">View All</p>
+
+            </div>
+        </section>
+    </div>
+
+
+</div>

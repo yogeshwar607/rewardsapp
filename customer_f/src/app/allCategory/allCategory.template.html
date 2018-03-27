@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-lg-3" *ngFor="let i of data">
+        <section class="widget" widget>
+
+            <div class="widget-body">
+
+                <h4 style="text-align:center;"> <b>{{i.name}}</b></h4>
+                <div *ngFor="let a of i.sub_category" style="margin: 10px;text-align:center;">
+                    <a [routerLink]=" ['/app/allProducts-page']" [queryParams]="{category: a.name}">
+                        <span style="padding:7px" class="badge badge-danger">{{a.name}}</span>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+</div>

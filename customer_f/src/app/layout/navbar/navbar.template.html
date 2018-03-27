@@ -1,0 +1,352 @@
+<div class="row" style="padding: 20px 10px;">
+    <a class="col-lg-2" style="    display: flex;
+    align-items: center;
+    justify-content: center;">
+        <h2 [routerLink]=" ['/app/home'] ">tryy</h2>
+    </a>
+    <div class="col-lg-6" style="    display: flex;
+    align-items: center;
+    justify-content: center;">
+        <input type="text" class="form-control " name="sear" [(ngModel)]="sear" placeholder="Search">
+        <button [routerLink]=" ['/app/allProducts-page']" [queryParams]="{search: sear}" class="btn btn-primary" type="button">Search</button>
+
+    </div>
+    <div class="col-lg-1" style="    display: flex;
+    align-items: center;
+    justify-content: center;">
+        <button [routerLink]=" ['/app/cart-page'] " class="btn btn-primary" type="button">
+              Cart &nbsp;&nbsp; <span class="badge badge-pill badge-white text-primary">{{cart}}</span>
+            </button>
+    </div>
+    <!--<div class="col-lg-1" style="    display: flex;-->
+    <!--align-items: center;
+    justify-content: center;">-->
+    <!--<button *ngIf="loginStatus == true" [routerLink]=" ['/app/account-page'] " class="btn btn-primary" type="button">
+              Account &nbsp;&nbsp; 
+            </button>-->
+    <!--</div>-->
+    <div class="col-lg-2" style="    display: flex;
+    align-items: center;
+    justify-content: center;">
+        <button *ngIf="loginStatus == false" (click)="showD()" class="btn btn-primary" type="button">
+              Login/SignUp 
+            </button>
+        <button *ngIf="loginStatus == true" [routerLink]=" ['/app/account-page'] " class="btn btn-primary" type="button">
+{{username}}
+<!--<span style="    color: white;" class="help-block">(Account Info)</span>-->
+            </button>
+
+
+    </div>
+
+    <div class="col-lg-1" style="    display: flex;
+    align-items: center;
+    justify-content: center;">
+
+        <button style="margin-left:12px" *ngIf="loginStatus == true" (click)="logout()" class="btn btn-primary" type="button">
+Logout            </button>
+
+    </div>
+
+</div>
+<app-dialog [(visible)]="showDialog">
+    <!--<h1>Hello World</h1>
+    <button (click)="showDialog = !showDialog" class="btn">Close</button>-->
+    <div class="mb-sm">
+        <div class="btn-group">
+            <label class="btn btn-gray" btnRadio="login" name='login' [(ngModel)]="radioModel">
+             Login
+            </label>
+
+            <label class="btn btn-gray" btnRadio="otp" name='otp' [(ngModel)]="radioModel">
+             Login With OTP
+            </label>
+            <label class="btn btn-gray" btnRadio="register" name='register' [(ngModel)]="radioModel">
+             Register
+            </label>
+        </div>
+    </div>
+
+    <div class="row" style="    display: flex;
+    align-items: center;
+    justify-content: center;
+  ">
+        <section style="    overflow-y: scroll;
+    /* overflow-x: hidden; */
+    max-height: 500px;
+    height: 500px;
+    width: 90%;" class="widget widget-login animated fadeInUp">
+
+            <div class="widget-body" *ngIf="radioModel == 'login' ">
+                <form class="login-form mt-lg">
+
+                    <div class="form-group">
+                        <input #model1="ngModel" type="text" class="form-control" [(ngModel)]="input" name="input" required placeholder="Email/Mobile No.">
+                        <span *ngIf="model1.invalid && inputerror == true" style="    color: Red;" class="help-block">This field is required</span>
+
+                    </div>
+                    <div class="form-group">
+                        <input #model2="ngModel" class="form-control" id="pswd" [(ngModel)]="password" name="password" required="required" type="password" placeholder="Password">
+                        <span *ngIf="model2.invalid && passerror == true" style="    color: Red;" class="help-block">This field is required</span>
+
+                    </div>
+                    <div style="    text-align: center;">
+                        <button (click)="login(model1.invalid,model2.invalid)" type="submit" class="btn btn-primary" type="button">
+              Login 
+            </button>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="widget-body" *ngIf="radioModel == 'otp' ">
+                <form class="login-form mt-lg">
+
+                    <div class="form-group">
+                        <input type="text" *ngIf="resendOtp == false" class="form-control" name="mobile_noL" [(ngModel)]="mobile_noL" placeholder="Mobile No.">
+                        <input type="text" *ngIf="resendOtp == true" class="form-control" name="otpL" [(ngModel)]="otpL" placeholder="OTP">
+                        <span *ngIf="resendOtp == true" (click)="requestOtpL()" class="help-block"><a>Resend OTP</a></span>
+
+                    </div>
+
+                    <div style="    text-align: center;">
+                        <button *ngIf="resendOtp == false" (click)="requestOtpL()" class="btn btn-primary" type="button">
+              Get OTP 
+            </button>
+                        <button *ngIf="resendOtp == true" (click)="verifyOtpL()" class="btn btn-primary" type="button">
+              Login 
+            </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="widget-body" *ngIf="radioModel == 'register' ">
+                <form class="login-form mt-lg">
+
+                    <div *ngIf="wizard[0].active == true" class="form-group">
+                        Name
+                        <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="name">
+                        <span *ngIf="validation.name " style="    color: Red;" class="help-block">This field is required</span>
+
+                    </div>
+                    <div *ngIf="wizard[0].active == true" class="form-group">
+                        Email
+
+                        <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="email">
+                        <span *ngIf="validation.email" style="    color: Red;" class="help-block">This field is required</span>
+
+                    </div>
+                    <div *ngIf="wizard[1].active == true" class="form-group">
+                        Mobile No
+
+                        <input type="text" class="form-control" placeholder="Mobile No" name="mobile_no" [(ngModel)]="mobile_no">
+                        <span *ngIf="validation.mobile_no" style="    color: Red;" class="help-block">This field is required</span>
+
+                    </div>
+                    <div *ngIf="wizard[2].active == true" class="form-group">
+                        OTP
+
+                        <input type="text" class="form-control" placeholder="otp" name="otpR" [(ngModel)]="otpR">
+                        <span *ngIf="validation.otp" style="    color: Red;" class="help-block">This field is required</span>
+
+                    </div>
+                    <div *ngIf="wizard[0].active == true" class="form-group">
+                        Password
+
+                        <input type="password" class="form-control" placeholder="" name="password" [(ngModel)]="password">
+                        <span *ngIf="validation.pass" style="    color: Red;" class="help-block">This field is required</span>
+
+                    </div>
+
+                    <div *ngIf="wizard[3].active == true" class="form-group">
+                        Gender
+                        <div class="form-group row">
+                            <!--<label for="normal-field" class="col-md-4  col-form-label text-md-right">Gender</label>-->
+                            <div style="padding-left: 20px;
+    padding-top: 10px;">
+                                <input type="radio" name="radio1" [(ngModel)]="model.sex" value="male" checked>
+                                <label for="radio1">
+                        Male
+                      </label>
+                                <input type="radio" name="radio1" [(ngModel)]="model.sex" value="female" checked>
+                                <label for="radio1">
+                        FeMale
+                      </label>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div *ngIf="wizard[3].active == true" class="form-group">
+                        Date of Birth
+                        <input type="text" name="dob" [(ngModel)]="dob" class="form-control" placeholder="MM/DD/YYYY">
+                        <span *ngIf="validation.dob" style="    color: Red;" class="help-block">This field is required</span>
+                        <span *ngIf="validation.dobFormat" style="    color: Red;" class="help-block">DOB formar : mm/dd/yyyy</span>
+
+                    </div>
+                    <div *ngIf="wizard[4].active == true" class="form-group">
+                        City
+                        <input type="text" name="city" [(ngModel)]="city" class="form-control" placeholder="City">
+                    </div>
+                    <div *ngIf="wizard[4].active == true" class="form-group">
+                        State
+                        <input type="text" name="state" [(ngModel)]="state" class="form-control" placeholder="State">
+                    </div>
+
+                    <div *ngIf="wizard[4].active == true" class="form-group">
+                        Country
+                        <input type="text" name="country" [(ngModel)]="country" class="form-control" placeholder="Country">
+                    </div>
+                    <div *ngIf="wizard[5].active == true" class="form-group" style="display: flex;">
+
+                        <div class="form-group row">
+                            <label for="normal-field" class="col-md-4  col-form-label text-md-right"><b>Interests</b></label>
+                            <div class="col-md-6" style="    max-height: 200px;
+    overflow-y: scroll;
+    width: 100%;">
+                                <button style="    margin: 10px;" (click)="activate(i,$event)" *ngFor="let i of interestsData" class="btn btn-default mb-xs" role="button">{{i.name}}</button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="wizard[6].active == true" class="form-group" style="display: flex;">
+                        <p> Registration Successful</p>
+                        <p> Please verify Your Email Address, by link send on ur Email Address</p>
+
+                    </div>
+
+
+                    <div style="    text-align: center;">
+                        <button *ngIf="wizard[6].active == false" class="btn btn-primary" type="button" (click)="nextWizard()">
+              Next
+            </button>
+                        <!--<button class="btn btn-primary" type="button" (click)="register()">
+              Submit
+            </button>-->
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </div>
+</app-dialog>
+<div class="row">
+    <div (mouseenter)="mouseEnter('brand') " (mouseleave)="mouseLeave('brand')" class="col-lg-6" style="border-width: thin;
+     display: block;
+  
+    border-color: black;
+    border-style: double;">
+        <a [routerLink]=" ['/app/allBrand-page'] " style="    text-align: center;
+    width: 100%;
+    display: block;"><span class="badge badge-success" style="font-size: x-large;
+    font-weight: 200;">Brands</span></a>
+
+
+        <div *ngIf="show == 'brand' || show == 'cat' " class="row" style="display :flex;justify-content: space-around;">
+            <a class="col-lg-3" *ngFor="let i of data1" [routerLink]=" ['/app/brandDetail-page/'+i._id] " style="margin:10px;">
+                <!--<section class="widget" widget>-->
+
+                <div class="badge badge-primary">
+                    <b><i> {{i.name}}</i> </b>
+                </div>
+                <!--</section>-->
+            </a>
+        </div>
+
+    </div>
+
+    <div (mouseenter)="mouseEnter('cat') " (mouseleave)="mouseLeave('cat')" class="col-lg-6" style="border-width: thin;
+    display: block;
+  
+    border-color: black;
+    border-style: double;">
+        <a [routerLink]=" ['/app/allCategory-page'] " style="    text-align: center;
+    width: 100%;
+    display: block;"><span class="badge badge-success" style="font-size: x-large;
+    font-weight: 200;">Categories</span></a>
+
+        <!--</div>-->
+        <div class="row" *ngIf="show == 'cat' || show == 'brand'" style="display :flex;justify-content: space-around;">
+            <div class="col-lg-3" *ngFor="let i of data">
+
+
+                <div class="badge badge-default" style="margin:10px">
+                    <b><i> {{i.name}}</i> </b>
+                </div>
+                <div *ngFor="let x of i.sub_category">
+                    <a style="margin:5px" [routerLink]=" ['/app/allProducts-page']" [queryParams]="{category: x.name}">
+                        <span class="badge badge-danger">{{x.name}}</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--<div *ngIf="show == 'brand'" (mouseenter)="mouseEnter('brand') " (mouseleave)="mouseLeave('brand')" class="row" style="padding:20px 10px;z-index:10">
+    <div class="col-lg-4">
+        <ul>
+            <li>Brand 1</li>
+            <li>Brand 2</li>
+
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <ul>
+            <li>Brand 1</li>
+            <li>Brand 2</li>
+
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <ul>
+            <li>Brand 1</li>
+            <li>Brand 2</li>
+
+        </ul>
+    </div>
+
+    <div class="col-lg-4">
+        <ul>
+            <li>Brand 1</li>
+            <li>Brand 2</li>
+
+        </ul>
+    </div>
+
+
+</div>-->
+<!--<div *ngIf="show == 'cat'" (mouseenter)="mouseEnter('cat') " (mouseleave)="mouseLeave('cat')" class="row" style="padding:20px 10px;">
+    <div class="col-lg-4">
+        <ul>
+            <li>Cat 1</li>
+            <li>Cat 2</li>
+
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <ul>
+            <li>Cat 1</li>
+            <li>Cat 2</li>
+
+        </ul>
+    </div>
+    <div class="col-lg-4">
+        <ul>
+            <li>Cat 1</li>
+            <li>Cat 2</li>
+
+        </ul>
+    </div>
+
+    <div class="col-lg-4">
+        <ul>
+            <li>Cat 1</li>
+            <li>Cat 2</li>
+
+        </ul>
+    </div>
+</div>-->
